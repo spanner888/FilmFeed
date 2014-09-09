@@ -1,6 +1,11 @@
-//motor shaft hole
+//mounting shaft hole ... Does it have to go ALL the way through??
+//... should the INSIDE edges of the outer guide edges have slight slope ?
+// - ie thinner at top edges to help film slot in easier.
 
+///////////////////////////////////////////////////////////////////////////////////////////
+// Set up thr variables for the size of the roller sub-parts
 // hopefully sizes are mm!!
+///////////////////////////////////////////////////////////////////////////////////////////
 shaft_R = 6.5/2;
 
 CoreCyl_H = 10;
@@ -10,12 +15,18 @@ RunnerCyl_H = 3;
 RunnerCyl_R = 5;
 
 OuterCyl_H = 2;
-OuterCyl_R = 6;
+OuterCyl_R = 8;
 
 numSprockets = 8;
 
-	union()
-{
+///////////////////////////////////////////////////////////////////////////////////////////
+// now draw the parts
+///////////////////////////////////////////////////////////////////////////////////////////
+
+//Central core cylinder set - shaft hole
+difference() {
+	//First join all the cylinders into the roller shape
+	union(){
 		cylinder(h = CoreCyl_H, r = CoreCyl_R, $fn=100);
 
        	  	// step up .. film runs on these two cylinders
@@ -23,15 +34,12 @@ numSprockets = 8;
               translate ([0,0,-RunnerCyl_H]) cylinder(h = RunnerCyl_H, r = RunnerCyl_R, $fn=100);
        
               //Outer edges - contain film 
-              //... should these have slight slope - ie thinner at top edges?
               translate ([0,0,CoreCyl_H + RunnerCyl_H]) cylinder(h = OuterCyl_H, r = OuterCyl_R, $fn=100);
               translate ([0,0,-(RunnerCyl_H + OuterCyl_H)]) cylinder(h = OuterCyl_H, r = OuterCyl_R, $fn=100);
       	}
-
-//Central core cylinder - shaft hole
-//difference() 
-{
-//     cylinder (h = CoreCyl_H, r = shaftD, center = true, $fn=100);
+	// now difference (subtract) the mounting shaft hole
+     translate ([0,0,-(RunnerCyl_H + OuterCyl_H)])
+	cylinder (h = (CoreCyl_H + 2*RunnerCyl_H + 2*OuterCyl_H), r = shaft_R, $fn=100);
 }
 
 
