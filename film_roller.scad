@@ -1,35 +1,37 @@
 //motor shaft hole
 
 // hopefully sizes are mm!!
-shaftD = 3;//6.5;
+shaft_R = 6.5/2;
 
-CoreCylH = 18;
-CoreCylD = 8;
+CoreCyl_H = 10;
+CoreCyl_R = 4;
 
-RunnerCylH = 3;
-RunnerCylD = 13;
+RunnerCyl_H = 3;
+RunnerCyl_R = 5;
 
-OuterCylH = 2;
-OuterCylD = 12;
+OuterCyl_H = 2;
+OuterCyl_R = 6;
 
 numSprockets = 8;
 
-		cylinder(h = CoreCylH, d=CoreCylD, center = true, $fn=100);
+	union()
+{
+		cylinder(h = CoreCyl_H, r = CoreCyl_R, $fn=100);
 
        	  	// step up .. film runs on these two cylinders
-              translate ([0,0,CoreCylH/2]){cylinder(h = RunnerCylH, d = RunnerCylD};
-
-	union(){
+              translate ([0,0,CoreCyl_H]) cylinder(h = RunnerCyl_H, r = RunnerCyl_R, $fn=100);
+              translate ([0,0,-RunnerCyl_H]) cylinder(h = RunnerCyl_H, r = RunnerCyl_R, $fn=100);
        
               //Outer edges - contain film 
               //... should these have slight slope - ie thinner at top edges?
-             // translate ([0,0,CoreCylH + RunnerCylH]){cylinder(h = OuterCylH, d=OuterCylD)};
-              //translate ([0,0,-(RunnerCylH + OuterCylH)]){cylinder(h = OuterCylH, d=OuterCylD)};
+              translate ([0,0,CoreCyl_H + RunnerCyl_H]) cylinder(h = OuterCyl_H, r = OuterCyl_R, $fn=100);
+              translate ([0,0,-(RunnerCyl_H + OuterCyl_H)]) cylinder(h = OuterCyl_H, r = OuterCyl_R, $fn=100);
       	}
 
 //Central core cylinder - shaft hole
-difference() {
-//     cylinder (h = CoreCylH, d=shaftD, center = true, $fn=100);
+//difference() 
+{
+//     cylinder (h = CoreCyl_H, r = shaftD, center = true, $fn=100);
 }
 
 
@@ -37,6 +39,6 @@ difference() {
 for ( i = [0 : 1 : numSprockets-1 ] )
 {
 //    rotate( i * 360 / numSprockets, [1, 1, 0])
-   translate([0, 10, 0])
-   cylinder(r1 = 1.5, r2 = 0.7, h = 5);
+//   translate([0, 10, 0])
+//   cylinder(r1 = 1.5, r2 = 0.7, h = 5);
 }
