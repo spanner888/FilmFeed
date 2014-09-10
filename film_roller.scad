@@ -1,15 +1,32 @@
 //*** ASSUMPTION: SPROCKETS ARE IN CENTER OF RUNNER!!!!!!!!
 
-// mounting shaft hole ... Does it have to go ALL the way through??
-// mounting shaft hole ... add a flat spot to mate with shaft?
+//?? XCJ/dif 3D printer resolution => on design/capability!!!!!
+
+
+/* mounting shaft hole 
+	... Does it have to go ALL the way through??
+ 	... add a flat spot to mate with shaft?
+	?? adjust hole size for tightish fit on shaft?????????
+*/
 
 //... should the INSIDE edges of the outer guide edges have slight slope ?
 // - ie thinner at top edges to help film slot in easier.
 // ... or at LEAST a rounded top edge?
 
-//sprockets should be more oval shaped?
+/*sprockets should be more oval shaped?
+	 how to bevel or round edges of a cylinder????
+	... actualy do NOT have to be round/oval 
+	B&H ones are made ffrom FLAT steel and FLAT beveled
+	... so always have FLAT surfaces on contact with film!!!!!!
 
-// how to bevel or round edges of a cylinder????
+	?? so make as cube, then difference with TWO dif pyramids to set base & top bevels/slopes??
+	simpler = just TWO dif pyramids to set base & top bevels/slopes??
+.. MORE complete .. back to cube + ROUND the corners as have the sprocket corner radius
+...then bevel with two pyramids!!!!
+
+*/
+
+// ** b&h - non-sprocket side RunnerCyl film surface slopes INWARDS!!!
 
 // how to MEASURE/VALIDATE sizes before creating/printing?
 
@@ -20,10 +37,10 @@
 *******************************************************************************/
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-// Set up thr variables for the size of the roller sub-parts
+// Variables for size of roller sub-parts
 // hopefully sizes are mm!!
 ///////////////////////////////////////////////////////////////////////////////////////////
-/* 16mm Standards:	these do NOT include suuper or ultra 16mm sizes!!!
+/* 16mm Standards:	these do NOT include super or ultra 16mm sizes!!!
   sprocket width		1.829
   sprocket height		1.27
   sprocket radius		0.25
