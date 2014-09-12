@@ -12,81 +12,49 @@
 //... should the INSIDE edges of the outer guide edges have slight slope ?
 // - ie thinner at top edges to help film slot in easier.
 // ... or at LEAST a rounded top edge?
+/* see Extruding a Polygon
 
-/*sprockets should be more oval shaped?
-	 how to bevel or round edges of a cylinder????
-	... actualy do NOT have to be round/oval 
-	B&H ones are made ffrom FLAT steel and FLAT beveled
-	... so always have FLAT surfaces on contact with film!!!!!!
+Extrusion can also be performed on polygons with points chosen by the user.
 
-	?? so make as cube, then difference with TWO dif pyramids to set base & top bevels/slopes??
-	simpler = just TWO dif pyramids to set base & top bevels/slopes??
-.. MORE complete .. back to cube + ROUND the corners as have the sprocket corner radius
-...then bevel with two pyramids!!!!
+Here is a simple polygon and its (fine-grained: $fn=200) rotational extrusion (profile and lathe). (Note it has been rotated 90 degrees to show how the rotation will look, the rotate_extrude() needs it flat).
 
+rotate([90,0,0])        polygon( points=[[0,0],[2,1],[1,2],[1,3],[3,4],[0,5]] );
+// --------------------------------------------------------------------------- ;
+rotate_extrude($fn=200) polygon( points=[[0,0],[2,1],[1,2],[1,3],[3,4],[0,5]] );
 */
+
 
 // ** b&h - non-sprocket side RunnerCyl film surface slopes INWARDS!!!
 
-// how to MEASURE/VALIDATE sizes before creating/printing?
+/* how to MEASURE/VALIDATE sizes before creating/printing?
+Getting input
 
+  Now we have variables, it would be nice to be able to get input into them instead of setting the values from code. There are a few functions to read data from DXF files, or you can set a variable with the -D switch on the command line.
+
+  Getting a point from a drawing
+
+  Getting a point is useful for reading an origin point in a 2D view in a technical drawing. The function dxf_cross will read the intersection of two lines on a layer you specify and return the intersection point. This means that the point must be given with two lines in the DXF file, and not a point entity.
+
+  OriginPoint = dxf_cross(file="drawing.dxf", layer="SCAD.Origin", 
+			  origin=[0, 0], scale=1);
+
+  Getting a dimension value
+
+  You can read dimensions from a technical drawing. This can be useful to read a rotation angle, an extrusion height, or spacing between parts. In the drawing, create a dimension that does not show the dimension value, but an identifier. To read the value, you specify this identifier from your script:
+
+  TotalWidth = dxf_dim(file="drawing.dxf", name="TotalWidth",
+			  layer="SCAD.Origin", origin=[0, 0], scale=1);
+
+  For a nice example of both functions, see Example009 and the image on the homepage of OpenSCAD.
+
+*/
 /*******************************************************************************
 *** RunnerCyl_R IS CRITICAL - SETS SPROCKET SPACING = FRAME PERF SPACING!!!!
 ?? CALC FROM DIAMETER = numSprockets*Sprocket-pitch, SO RADIUS = numSprockets*Sprocket-pitch/2&pi
 
 *******************************************************************************/
 
-///////////////////////////////////////////////////////////////////////////////////////////
-// Variables for size of roller sub-parts
-// hopefully sizes are mm!!
-///////////////////////////////////////////////////////////////////////////////////////////
-/* 16mm Standards:	these do NOT include super or ultra 16mm sizes!!!
-  sprocket width		1.829
-  sprocket height		1.27
-  sprocket radius		0.25
-
-  Frame:
-	  frame width		10.26
-	  frame height		7.49
-
-  perf sizes (see doc for other formats:)			
-	  width			1.829
-	  height			1.27
-	  corner radius		0.25	
-
-  ??WHICH IS IT?????
-  Sprocket-pitch 1	7.605
-  Sprocket-pitch 2	7.62
-*/
-
-numSprockets = 8;
-SprocketPitch = 7.605;
-sprocketEmbed = 0.3;	// because a flat cone base on a cylinder surface would leave a gap,
-					// need to 'embed' sprocket cone into surface to ensure fully mates - no gaps!
-spktBase_R = 1.27/2;	// SPECS: ... but prob for OVAL shaped!!! 1.829/2;
-spktTop_R = 0.25;
-spkt_H = 1.27 + sprocketEmbed;
-
-
-filmWidth = 16;		 // from 16mm standards
-frameWidth = 10.26; // from 16mm standards
-filmSlop = 0.2;		// a little bit of slop - so film does not grab/stick/rub on sides
-				// reduce or REMOVE if add sloping outer walls
-
-RunnerCyl_H = (filmWidth - frameWidth - 0.6)/2;		// -0.6 => film frame surface NOT touching roller!
-//RunnerCyl_R = 6;
-RunnerCyl_R = (numSprockets*SprocketPitch)/(2*3.414);
-
-CoreCyl_H = filmWidth + filmSlop - 2*RunnerCyl_H ;
-CoreCyl_R = 4;
-
-OuterCyl_H = 2;
-OuterCyl_R = RunnerCyl_R + 3;
-
-
-shaft_R = 6.5/2;
-
-fragResolution = 500;
+include <16mm.scad>	// all the variables for part sizes!
 
 // add/remove these parts from teh final object
 includeSprockets = true;
@@ -96,6 +64,8 @@ includeOuterGuideEdges = true;
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 $fn = fragResolution;
+
+include <sprocket.scad> 	// create all the sprockets
 
 //Central core cylinder set - shaft hole
 difference() {
@@ -119,7 +89,7 @@ difference() {
 }
 
 
-//film drive sprockets
+/*OLD STYLE film drive sprockets
 if (includeSprockets == true){
 	// by default dir of cyl is "up Z axis" ... 3rd param
 	for ( i = [0 : 1 : numSprockets-1 ] )
@@ -129,3 +99,5 @@ if (includeSprockets == true){
 	   cylinder(r1 = spktBase_R, r2 = spktTop_R, h = spkt_H, $fn = fragResolution);
 	}
 }
+*/
+
