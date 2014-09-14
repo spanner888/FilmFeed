@@ -3,7 +3,7 @@
 //?? XCJ/dif 3D printer resolution => on design/capability!!!!!
 
 
-/* mounting shaft hole 
+/* mounting shaft hole
 	... Does it have to go ALL the way through??
  	... add a flat spot to mate with shaft?
 	?? adjust hole size for tightish fit on shaft?????????
@@ -29,24 +29,20 @@ rotate_extrude($fn=200) polygon( points=[[0,0],[2,1],[1,2],[1,3],[3,4],[0,5]] );
 /* how to MEASURE/VALIDATE sizes before creating/printing?
 Getting input
 
-  Now we have variables, it would be nice to be able to get input into them instead of setting the values from code. There are a few functions to read data from DXF files, or you can set a variable with the -D switch on the command line.
-
+  Now we have variables, it would be nice to be able to get input into them instead of setting the values from code.
+  There are a few functions to read data from DXF files, or you can set a variable with the -D switch on the command line.
   Getting a point from a drawing
-
-  Getting a point is useful for reading an origin point in a 2D view in a technical drawing. The function dxf_cross will read the intersection of two lines on a layer you specify and return the intersection point. This means that the point must be given with two lines in the DXF file, and not a point entity.
-
-  OriginPoint = dxf_cross(file="drawing.dxf", layer="SCAD.Origin", 
+  Getting a point is useful for reading an origin point in a 2D view in a technical drawing.
+  The function dxf_cross will read the intersection of two lines on a layer you specify and return the intersection point.
+  This means that the point must be given with two lines in the DXF file, and not a point entity.
+  OriginPoint = dxf_cross(file="drawing.dxf", layer="SCAD.Origin",
 			  origin=[0, 0], scale=1);
-
   Getting a dimension value
-
   You can read dimensions from a technical drawing. This can be useful to read a rotation angle, an extrusion height, or spacing between parts. In the drawing, create a dimension that does not show the dimension value, but an identifier. To read the value, you specify this identifier from your script:
-
   TotalWidth = dxf_dim(file="drawing.dxf", name="TotalWidth",
 			  layer="SCAD.Origin", origin=[0, 0], scale=1);
 
   For a nice example of both functions, see Example009 and the image on the homepage of OpenSCAD.
-
 */
 /*******************************************************************************
 *** RunnerCyl_R IS CRITICAL - SETS SPROCKET SPACING = FRAME PERF SPACING!!!!
@@ -54,9 +50,9 @@ Getting input
 
 *******************************************************************************/
 
-include <16mm.scad>	// all the variables for part sizes!
+include <16mm.scad>	          // all the variables for part sizes!
 
-// add/remove these parts from teh final object
+// un/comment these lines to add/remove these parts from final object
 includeSprockets = true;
 includeOuterGuideEdges = true;
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -76,8 +72,8 @@ difference() {
 		// step up .. film runs on these two cylinders
 	      translate ([0,0,CoreCyl_H]) cylinder(h = RunnerCyl_H, r = RunnerCyl_R);
 	      translate ([0,0,-RunnerCyl_H]) cylinder(h = RunnerCyl_H, r = RunnerCyl_R);
-      
-	      //Outer edges - contain film 
+
+	      //Outer edges - contain film
 		if (includeOuterGuideEdges == true){
 		      translate ([0,0,CoreCyl_H + RunnerCyl_H]) cylinder(h = OuterCyl_H, r = OuterCyl_R);
 		      translate ([0,0,-(RunnerCyl_H + OuterCyl_H)]) cylinder(h = OuterCyl_H, r = OuterCyl_R);

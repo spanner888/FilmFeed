@@ -2,10 +2,17 @@
 spktBase_R = 1.27/2;	// SPECS: ... but prob for OVAL shaped!!! 1.829/2;
 spktTop_R = 0.25;
 
+//** ONLY select ONE of these!!! ... only ONE = true, other(s) = false
+TwoDextrude1  = false;       //flag to select correct sprocket height for 2D_extruded_roller design file
+// ... ATM false above => below true!
+//filmRoller1 = false;        //flag to select correct sprocket height for film_roller design file
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Variables for size of roller sub-parts
 // hopefully sizes are mm!!
+// http://forum.openscad.org/unit-of-measure-td1316.html
+//  STL files are unit less, so all models transferred via STL only have implied units, regardless of the modelling package. Reprap generally assumes they are millimeters, but some hosts allow the object to be scaled for STLs in inches.
+//       ... so .scad also unitless???
 ///////////////////////////////////////////////////////////////////////////////////////////
 /* 16mm & manufacturer Standards:	these do NOT include super or ultra 16mm sizes!!!
 
@@ -64,7 +71,7 @@ filmSlop = 0.2;		 // a little bit of slop - so film does not grab/stick/rub on s
 
 RunnerCyl_H = (filmWidth - frameWidth - 0.6)/2;		// -0.6 => film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
 //RunnerCyl_R = 6;
-RunnerCyl_R = (numSprockets*SprocketPitch)/(2*3.14159);		//circumfrance = 2*pi*radius
+RunnerCyl_R = (numSprockets*SprocketPitch)/(2*PI);   //3.14159);		//circumfrance = 2*pi*radius
 
 CoreCyl_H = filmWidth + filmSlop - 2*RunnerCyl_H ;
 CoreCyl_R = 4;
@@ -77,3 +84,9 @@ shaft_R = 6.5/2;
 
 fragResolution = 500;
 
+//just for testing if this file compiles standalone!, .. and it does complie OK!
+    *minkowski()
+    {
+       square([10, 20], center = true, $fn = fragResolution);
+       circle(r=3, center = true, $fn = fragResolution);
+    }
