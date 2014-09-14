@@ -1,6 +1,17 @@
-// obsolete once switch to new sprocket type
-spktBase_R = 1.27/2;	// SPECS: ... but prob for OVAL shaped!!! 1.829/2;
-spktTop_R = 0.25;
+/* >>> UPDATE HERE This file contains all the parameter for 16mm "standard" film
+    So it is not for Kodak or Bell & Howell films!
+
+    ... Might work for the other formats - but currently untested
+
+*/
+
+
+//Select ONE of below to set the film size:
+Standard_16 = true;
+Kodak_16 = true;
+BellHowell_16 = true;
+
+import("ruler.stl");    // a ruler so can measure sizes of things ... this one looks imperial!
 
 //** ONLY select ONE of these!!! ... only ONE = true, other(s) = false
 TwoDextrude1  = false;       //flag to select correct sprocket height for 2D_extruded_roller design file
@@ -49,10 +60,16 @@ SprocketPitch = 7.605;
 sprocketEmbed = 0.;	// because a flat cone base on a cylinder surface would leave a gap,
 					// need to 'embed' sprocket cone into surface to ensure fully mates - no gaps!
 
-// 16mm standard sprocket-perforations
-	  spkt_W = 1.829;
-	  spkt_L = 1.27;
-	  spktCorner_R = 0.25;
+//spkt_W = Standard_16? 11.829 : 0;
+//else if (filmSize == "Kodak"){
+//else if (filmSize == "Bell & Howell"){
+// force warnings .. filmSize not set or incorrect value
+
+spkt_W = 1.829;
+spkt_L = 1.27;
+spktCorner_R = 0.25;
+/*
+*/
 
 /* Kodak sprocket-perforations
 	  spkt_W = 1.981;
@@ -63,6 +80,9 @@ sprocketEmbed = 0.;	// because a flat cone base on a cylinder surface would leav
 spkt_H = 2.2 + sprocketEmbed;		// <<< embedding will reduce actual base size!!!!!
 								// hopefully this will give just enough slop for good fit :)
 
+spktShaft_H_fr = (-0.5*RunnerCyl_H);
+spktShaft_H_2D = (OuterCyl_H + 0.5*RunnerCyl_H);
+spktShaft_H = 0;    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< all this not yet worked out. just settign to 0 so is obvious ATM!
 
 filmWidth = 16;		 // from 16mm standards
 frameWidth = 10.26;   // from 16mm standards
@@ -78,13 +98,15 @@ CoreCyl_R = 4;
 
 OuterCyl_H = 2;
 OuterCyl_R = RunnerCyl_R + 3;
+outerWallSlopeGap = 0.5;        // only used by 2D_extruded_roller code, not by film_roller.scad
 
 
-shaft_R = 6.5/2;
+shaft_R = 6.5/2;        // motor/stepper shaft radius
 
-fragResolution = 500;
+fragResolution = 500;   // resolution of individual parts in the 3D model
 
-//just for testing if this file compiles standalone!, .. and it does complie OK!
+//just for testing if this file compiles standalone!, .. and it does compile OK!
+// add/remove '*' before minkowski() below to skip/run this bit of test code
     *minkowski()
     {
        square([10, 20], center = true, $fn = fragResolution);
