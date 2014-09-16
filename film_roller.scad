@@ -53,6 +53,7 @@ Getting input
 include <16mm.scad>	          // all the variables for part sizes!
 
 // un/comment these lines to add/remove these parts from final object
+//?????not implemented yet?????????
 includeSprockets = true;
 includeOuterGuideEdges = true;
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -61,7 +62,8 @@ includeOuterGuideEdges = true;
 
 $fn = fragResolution;
 
-include <sprocket.scad> 	// create all the sprockets
+include <sprocket.scad>    // draws the ring of sprockets at correct position along shaft
+sprockets(spkt_H, spkt_W, spktCorner_R, spkt_L);
 
 //Central core cylinder set - shaft hole
 difference() {
@@ -84,16 +86,4 @@ difference() {
 	cylinder (h = (CoreCyl_H + 2*RunnerCyl_H + 2*OuterCyl_H), r = shaft_R);
 }
 
-
-/*OLD STYLE film drive sprockets
-if (includeSprockets == true){
-	// by default dir of cyl is "up Z axis" ... 3rd param
-	for ( i = [0 : 1 : numSprockets-1 ] )
-	{
-	   rotate( [90, 0, i * 360 / numSprockets])
-	   translate([0, -0.5*RunnerCyl_H, RunnerCyl_R-sprocketEmbed ])
-	   cylinder(r1 = spktBase_R, r2 = spktTop_R, h = spkt_H, $fn = fragResolution);
-	}
-}
-*/
 

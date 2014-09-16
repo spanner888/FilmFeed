@@ -53,11 +53,12 @@ module sprocket(s_height, s_W, sCorner_R, s_L){
 // Now draw ALL the sprockets in final position
 //!!!!!!Assignment is not allowed within either branch of an if statement. Consider using the ternary operator 'condition ? consequent: alternative'.
 // adjust the position of ALL the sprockets along the shaft according to which model in use.
-spktShaft_H = TwoDextrude1 ? (OuterCyl_H + 0.5*RunnerCyl_H) : (-0.5*RunnerCyl_H);
+//spktShaft_H = TwoDextrude1 ? (OuterCyl_H + 0.5*RunnerCyl_H) : (-0.5*RunnerCyl_H);
 // BAD ASSUMPTION: sprockets are centered on the runner cylinder surface
 // **>>> TODO Adjust as runner width reduced so does NOT touch film frame area!!!
 
 //film drive sprockets, by default dir of cyl is "up Z axis" ... 3rd param
+module sprocketRing(s_height, s_W, sCorner_R, s_L){
 	color("red")
 	for ( i = [0 : 1 : numSprockets-1 ] )
 	{
@@ -66,6 +67,6 @@ spktShaft_H = TwoDextrude1 ? (OuterCyl_H + 0.5*RunnerCyl_H) : (-0.5*RunnerCyl_H)
                     spktShaft_H,
                     RunnerCyl_R + spkt_H/2  // set sprockets at this radius. + spkt_H/2 as drawn with "center = true".
                     ])
-        sprocket(spkt_H, spkt_W, spktCorner_R, spkt_L);
+        sprocket(s_height, s_W, sCorner_R, s_L);
     }
-
+}
