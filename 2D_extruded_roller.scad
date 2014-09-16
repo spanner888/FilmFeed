@@ -44,8 +44,8 @@ module rollerOutlinePartial (){
 }
 
 //Draw with/out the outer guide edges, according to parameter passed in.
-module TwoDExtrudeRoller(includeOuterGuideEdges = true){
-    if (includeOuterGuideEdges){
+module TwoDExtrudeRoller(addOuterGuideEdges = true){
+    if (addOuterGuideEdges){
         //rotated 90 degrees to show how the rotation will look, the rotate_extrude() needs it flat).
         //rotate([90,0,0])
         rotate_extrude($fn=200) rollerOutlineAll();

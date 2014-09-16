@@ -76,10 +76,10 @@ module film_rollerAll(){
     }
 }
 
-module film_roller(includeOuterGuideEdges = true){
-    if (includeOuterGuideEdges == true){
+module film_roller(addOGEdges = true){
+    if (addOGEdges){
         difference() {
-            film_rollerAll()
+            film_rollerAPartial()
             // now difference (subtract) the mounting shaft hole
             translate ([0,0,-(RunnerCyl_H + OuterCyl_H)])
             cylinder (h = (CoreCyl_H + 2*RunnerCyl_H + 2*OuterCyl_H), r = shaft_R);

@@ -30,6 +30,8 @@
     Files 2D_extrude_roller, film_roller
 */
 
+//Sprocket corner radius MUST be less than sprocket width/2, cannot be >=!
+// if not sprocket does not get drawn!
 
 //Select ONE of below to set the film size:
 Standard_16 = true;
