@@ -15,7 +15,29 @@ then adjust heights......
 
 include <16mm.scad>
 include <sprocket.scad>
+include <film_roller.scad>
+include <2D_extruded_roller.scad>
 
+color("purple")
+translate([0,
+            25,
+            0
+            ])
+TwoDExtrudeRoller(includeOuterGuideEdges = true);
+
+
+sprocketRing(spkt_H, spkt_W, spktCorner_R, spkt_L);
+film_roller(includeOuterGuideEdges = false);
+
+color("green")
+translate([0,
+            25,
+            0
+            ])
+film_roller(includeOuterGuideEdges = false);
+
+
+/*
 module t1(s_Hh, s_Ww, sCorner_Rr, s_Ll){
     sprocket(s_Hh, s_Ww, sCorner_Rr, s_Ll);
 }
@@ -55,3 +77,4 @@ else {
     t1(22, 8, 1, 8);
 
 
+*/

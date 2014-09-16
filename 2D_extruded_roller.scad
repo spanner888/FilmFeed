@@ -1,6 +1,8 @@
-include <16mm.scad>        // all the variables for part sizes!
-include <sprocket.scad>    // draws the ring of sprockets at correct position along shaft
-sprockets(spkt_H, spkt_W, spktCorner_R, spkt_L);
+// changes here are NOT automatically compiled/reloaded. Need to press F5 in main app!
+
+//TODO review rollerOutlineAll/Partial
+// make rollerOutlineAll call rollerOutlinePartial???
+// need think about shaft position....
 
 L0 = 0;                    // first outer edge
 L1 = L0 + OuterCyl_H;      // + outer wall thickness
@@ -13,6 +15,7 @@ LP0 = 0;                    // first outer edge
 LP1 = LP0 + RunnerCyl_H;     // + runner thickness
 LP2 = LP1 + CoreCyl_H;       // + central shaft
 LP3 = LP2 + RunnerCyl_H;     // + runner thickness
+
 
 // complete with outer guide walls
 module rollerOutlineAll(){
@@ -40,7 +43,15 @@ module rollerOutlinePartial (){
 								]);
 }
 
-//rotated 90 degrees to show how the rotation will look, the rotate_extrude() needs it flat).
-//rotate([90,0,0]) rollerOutline ();
-//rotate_extrude($fn=200) rollerOutlineAll ();
-rotate_extrude($fn=200) rollerOutlinePartial ();
+//Draw with/out the outer guide edges, according to parameter passed in.
+module TwoDExtrudeRoller(includeOuterGuideEdges = true){
+    if (includeOuterGuideEdges){
+        //rotated 90 degrees to show how the rotation will look, the rotate_extrude() needs it flat).
+        //rotate([90,0,0])
+        rotate_extrude($fn=200) rollerOutlineAll();
+    }
+    else {
+        rollerOutlinePartial();
+    }
+}
+

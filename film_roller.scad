@@ -1,3 +1,5 @@
+// changes here are NOT automatically compiled/reloaded. Need to press F5 in main app!
+
 //*** ASSUMPTION: SPROCKETS ARE IN CENTER OF RUNNER!!!!!!!!
 
 //?? XCJ/dif 3D printer resolution => on design/capability!!!!!
@@ -50,40 +52,31 @@ Getting input
 
 *******************************************************************************/
 
-include <16mm.scad>	          // all the variables for part sizes!
 
-// un/comment these lines to add/remove these parts from final object
-//?????not implemented yet?????????
-includeSprockets = true;
-includeOuterGuideEdges = true;
-///////////////////////////////////////////////////////////////////////////////////////////
-// now draw the parts
-///////////////////////////////////////////////////////////////////////////////////////////
+// draws the film roller based on pre-selected film standard size, #sprockets...
+// OuterGuideEdges are optional
+// sprockets are controlled in same file/drawing that also uses this module.
+module film_roller(includeOuterGuideEdges = true){
+    //Central core cylinder set - shaft hole
+    difference() {
+        //First join all the cylinders into the roller shape
+        union(){
+            cylinder(h = CoreCyl_H, r = CoreCyl_R);
 
-$fn = fragResolution;
+            // step up .. film runs on these two cylinders
+              translate ([0,0,CoreCyl_H]) cylinder(h = RunnerCyl_H, r = RunnerCyl_R);
+              translate ([0,0,-RunnerCyl_H]) cylinder(h = RunnerCyl_H, r = RunnerCyl_R);
 
-include <sprocket.scad>    // draws the ring of sprockets at correct position along shaft
-sprockets(spkt_H, spkt_W, spktCorner_R, spkt_L);
-
-//Central core cylinder set - shaft hole
-difference() {
-	//First join all the cylinders into the roller shape
-	union(){
-		cylinder(h = CoreCyl_H, r = CoreCyl_R);
-
-		// step up .. film runs on these two cylinders
-	      translate ([0,0,CoreCyl_H]) cylinder(h = RunnerCyl_H, r = RunnerCyl_R);
-	      translate ([0,0,-RunnerCyl_H]) cylinder(h = RunnerCyl_H, r = RunnerCyl_R);
-
-	      //Outer edges - contain film
-		if (includeOuterGuideEdges == true){
-		      translate ([0,0,CoreCyl_H + RunnerCyl_H]) cylinder(h = OuterCyl_H, r = OuterCyl_R);
-		      translate ([0,0,-(RunnerCyl_H + OuterCyl_H)]) cylinder(h = OuterCyl_H, r = OuterCyl_R);
-		}
-	}
-	// now difference (subtract) the mounting shaft hole
-    translate ([0,0,-(RunnerCyl_H + OuterCyl_H)])
-	cylinder (h = (CoreCyl_H + 2*RunnerCyl_H + 2*OuterCyl_H), r = shaft_R);
+              //Outer edges - contain film
+            if (includeOuterGuideEdges == true){
+                  translate ([0,0,CoreCyl_H + RunnerCyl_H]) cylinder(h = OuterCyl_H, r = OuterCyl_R);
+                  translate ([0,0,-(RunnerCyl_H + OuterCyl_H)]) cylinder(h = OuterCyl_H, r = OuterCyl_R);
+            }
+        }
+        // now difference (subtract) the mounting shaft hole
+        translate ([0,0,-(RunnerCyl_H + OuterCyl_H)])
+        cylinder (h = (CoreCyl_H + 2*RunnerCyl_H + 2*OuterCyl_H), r = shaft_R);
+    }
 }
 
 
