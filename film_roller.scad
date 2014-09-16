@@ -1,4 +1,4 @@
-// changes here are NOT automatically compiled/reloaded. Need to press F5 in main app!
+// changes here are NOT ALWAYS automatically compiled/reloaded. Need to press F5 in main app!
 
 //*** ASSUMPTION: SPROCKETS ARE IN CENTER OF RUNNER!!!!!!!!
 
@@ -53,30 +53,45 @@ Getting input
 *******************************************************************************/
 
 
-// draws the film roller based on pre-selected film standard size, #sprockets...
-// OuterGuideEdges are optional
-// sprockets are controlled in same file/drawing that also uses this module.
-module film_roller(includeOuterGuideEdges = true){
-    //Central core cylinder set - shaft hole
-    difference() {
-        //First join all the cylinders into the roller shape
-        union(){
-            cylinder(h = CoreCyl_H, r = CoreCyl_R);
+// draw without Outer Guide walls
+module film_rollerPartial(){
+    //First join all the cylinders into the roller shape
+    union(){
+        translate ([0,0,RunnerCyl_H]) cylinder(h = CoreCyl_H, r = CoreCyl_R);
 
-            // step up .. film runs on these two cylinders
-              translate ([0,0,CoreCyl_H]) cylinder(h = RunnerCyl_H, r = RunnerCyl_R);
-              translate ([0,0,-RunnerCyl_H]) cylinder(h = RunnerCyl_H, r = RunnerCyl_R);
-
-              //Outer edges - contain film
-            if (includeOuterGuideEdges == true){
-                  translate ([0,0,CoreCyl_H + RunnerCyl_H]) cylinder(h = OuterCyl_H, r = OuterCyl_R);
-                  translate ([0,0,-(RunnerCyl_H + OuterCyl_H)]) cylinder(h = OuterCyl_H, r = OuterCyl_R);
-            }
-        }
-        // now difference (subtract) the mounting shaft hole
-        translate ([0,0,-(RunnerCyl_H + OuterCyl_H)])
-        cylinder (h = (CoreCyl_H + 2*RunnerCyl_H + 2*OuterCyl_H), r = shaft_R);
+        // runners .. film runs on these two cylinders
+        translate ([0,0,RunnerCyl_H + CoreCyl_H]) cylinder(h = RunnerCyl_H, r = RunnerCyl_R);
+        cylinder(h = RunnerCyl_H, r = RunnerCyl_R);
     }
 }
 
+// draws the film roller based on pre-selected film standard size, #sprockets...
+// sprockets are not drawn here, but # of sprocketcs does set runner radius
+module film_rollerAll(){
+    //First join all the cylinders into the roller shape
+    union(){
+        translate ([0,0,OuterCyl_H]) film_rollerPartial();
+        translate ([0,0,CoreCyl_H + 2*RunnerCyl_H + OuterCyl_H]) cylinder(h = OuterCyl_H, r = OuterCyl_R);
+        cylinder(h = OuterCyl_H, r = OuterCyl_R);
+    }
+}
+
+module film_roller(includeOuterGuideEdges = true){
+    if (includeOuterGuideEdges == true){
+        difference() {
+            film_rollerAll()
+            // now difference (subtract) the mounting shaft hole
+            translate ([0,0,-(RunnerCyl_H + OuterCyl_H)])
+            cylinder (h = (CoreCyl_H + 2*RunnerCyl_H + 2*OuterCyl_H), r = shaft_R);
+        }
+    }
+    else{
+        difference() {
+            film_rollerAPartial()
+            // now difference (subtract) the mounting shaft hole
+            translate ([0,0,-(RunnerCyl_H + OuterCyl_H)])
+            cylinder (h = (CoreCyl_H + 2*RunnerCyl_H + 2*OuterCyl_H), r = shaft_R);
+        }
+    }
+}
 

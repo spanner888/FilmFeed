@@ -1,4 +1,4 @@
-// changes here are NOT automatically compiled/reloaded. Need to press F5 in main app!
+// changes here are NOT ALWAYS automatically compiled/reloaded. Need to press F5 in main app!
 
 //TODO review rollerOutlineAll/Partial
 // make rollerOutlineAll call rollerOutlinePartial???
@@ -51,7 +51,7 @@ module TwoDExtrudeRoller(includeOuterGuideEdges = true){
         rotate_extrude($fn=200) rollerOutlineAll();
     }
     else {
-        rollerOutlinePartial();
+        rotate_extrude($fn=200) rollerOutlinePartial();
     }
 }
 
