@@ -3,8 +3,8 @@ addSprockets = true;
 addOuterGuideEdges = true;
 
 // Pick ONE of these to match film-SMD size you require
-include <16mm_vars.scad>
-//include <16mmK_vars.scad>
+//include <16mm_vars.scad>
+include <16mmKodak_vars.scad>
 // ... more to come eg 8mm, 35mm
 
 // these files draw the dif parts

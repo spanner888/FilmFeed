@@ -72,15 +72,11 @@ sprocketEmbed = 0.08;	// because a flat cone base on a cylinder surface would le
                         // need to 'embed' sprocket cone into surface to ensure fully mates - no gaps!
                         // ** ADJUST FOR DIF NUMBER OF SPROCKETS .. ie dif roller radius!
 
-spkt_W = 1.829;
-spkt_L = 1.27;
-spktCorner_R = 0.25;
-
-/* Kodak sprocket-perforations
-	  spkt_W = 1.981;
-	  spkt_L = 2.794;
+// Kodak sprocket-perforations
+	  spkt_W = 2.794;
+	  spkt_L = 1.981;
 	  spktCorner_R = 0.51;
-*/
+
 
 spkt_H = 2.2 + sprocketEmbed;		// <<< embedding will reduce actual base size!!!!!
 								// hopefully this will give just enough slop for good fit :)
