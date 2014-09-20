@@ -30,18 +30,13 @@ else {
 // Add ONE film_roller
 if (addSprockets) {
     if (addOuterGuideEdges) {
-        //sprocketRing(OuterCyl_H + RunnerCyl_H/2, spkt_H, spkt_W, spktCorner_R, spkt_L);
+        sprocketRing(OuterCyl_H + RunnerCyl_H/2, spkt_H, spkt_W, spktCorner_R, spkt_L);
     }
     else{
-        //sprocketRing(RunnerCyl_H/2, spkt_H, spkt_W, spktCorner_R, spkt_L);
+        sprocketRing(RunnerCyl_H/2, spkt_H, spkt_W, spktCorner_R, spkt_L);
     }
 }
+color("silver")
 film_roller(addOuterGuideEdges);
 
-
-// Add ONE film_roller, at offset to the "right"
-// NO sprockets with this one! ATM
-color("green")
-translate([0,25,0])
-film_roller(addOuterGuideEdges);
 

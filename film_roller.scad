@@ -79,17 +79,17 @@ module film_rollerAll(){
 module film_roller(addOGEdges = true){
     if (addOGEdges){
         difference() {
-            film_rollerAPartial()
+            film_rollerAll();
             // now difference (subtract) the mounting shaft hole
-            translate ([0,0,-(RunnerCyl_H + OuterCyl_H)])
+            //translate ([0,0,-(RunnerCyl_H + OuterCyl_H)])
             cylinder (h = (CoreCyl_H + 2*RunnerCyl_H + 2*OuterCyl_H), r = shaft_R);
         }
     }
     else{
         difference() {
-            film_rollerAPartial()
+            film_rollerPartial();
             // now difference (subtract) the mounting shaft hole
-            translate ([0,0,-(RunnerCyl_H + OuterCyl_H)])
+            //translate ([0,0,-(RunnerCyl_H + OuterCyl_H)])
             cylinder (h = (CoreCyl_H + 2*RunnerCyl_H + 2*OuterCyl_H), r = shaft_R);
         }
     }
