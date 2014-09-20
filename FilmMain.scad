@@ -9,7 +9,7 @@ include <2D_extruded_roller.scad>
 
 // Add one 2D_extrude_roller at offset to the "right"
 if (addSprockets) {
-    color("purple")
+    color("orange")
     translate([0,55,0])
     TwoDExtrudeRoller(addOuterGuideEdges);
     translate([0,55,0])
@@ -30,10 +30,10 @@ else {
 // Add ONE film_roller
 if (addSprockets) {
     if (addOuterGuideEdges) {
-        sprocketRing(OuterCyl_H + RunnerCyl_H/2, spkt_H, spkt_W, spktCorner_R, spkt_L);
+        //sprocketRing(OuterCyl_H + RunnerCyl_H/2, spkt_H, spkt_W, spktCorner_R, spkt_L);
     }
     else{
-        sprocketRing(RunnerCyl_H/2, spkt_H, spkt_W, spktCorner_R, spkt_L);
+        //sprocketRing(RunnerCyl_H/2, spkt_H, spkt_W, spktCorner_R, spkt_L);
     }
 }
 film_roller(addOuterGuideEdges);
