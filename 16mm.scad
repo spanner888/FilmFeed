@@ -1,47 +1,19 @@
-/* FOUR dif heights for sprockets - 2 draw methods +/- outerguides
-    CHNAGE how drawing &/or calc sprocket height.....
-
-    study the include .. use more??
-    can include be inside IF????? <<<<<<<<<<<// includes INSIDE if's fail to compile!
-    just try #def!!!!!!! & ifdef..s........<<<<<<<<<<syntax error
-
-    ++ variable restrictions in if.....
-
-
-    use modules wiht params... then pass in dif params for sprocket height etc
-
-
-    File - config???
-        - set draw with/out sprockets, outer walls
-        - WHICH film type
-        - WHICH roller draw method
-        - which sprocket type (if have dif ones)
-
-
-    File/s
-        var sets for EACH film type
-
-        var sets for the dif drawing methods
-        + calcs
-
-        var/calcs for dif sprocket height with/out outer wall
-
-    File - sprockets
-    Files 2D_extrude_roller, film_roller
-*/
-
 //Sprocket corner radius MUST be less than sprocket width/2, cannot be >=!
 // if not sprocket does not get drawn!
+
+/*TO DO
+    - review filmSlop - make sure done so that film still fits capstan spokes AND guide wall
+    - capstan pos on rollers ... assumed in middle BUT see next
+    - roller - film fit - trimmed to keep away from frame => capstan pos!!!!
+    - roller radius/circumference/sprockets/film fit
+    - sprocket - height, taper, edges.... fit into film perforations!!!!!
+*/
 
 //Select ONE of below to set the film size:
 Standard_16 = true;
 Kodak_16 = true;
 BellHowell_16 = true;
 
-//** ONLY select ONE of these!!! ... only ONE = true, other(s) = false
-TwoDextrude1  = false;       //flag to select correct sprocket height for 2D_extruded_roller design file
-// ... ATM false above => below true!
-//filmRoller1 = false;        //flag to select correct sprocket height for film_roller design file
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Variables for size of roller sub-parts

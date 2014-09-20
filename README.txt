@@ -27,20 +27,20 @@ USAGE:
 		// un/comment these lines to add/remove these parts from final object
 		includeSprockets = true;
 		includeOuterGuideEdges = true;
-above ?????not implemented yet?????????
 
 	To adjust individual features - edit the configuration file matching your chosen film size, eg "16mm.scad".
 	Many features are calculated from basic parameters.
 	For example the number of sprockets and the frame height combine to set the roller circumference and thus the radius.
 
-    Select roller drawing type (& different features) by:
->>> UPDATE HERE		16mm.scad ....TwoDextrude1=true/fasle/whatever end up with here!
-
-
-	All the openSCAD source files must all be in same directory, then compile as usual in openSCAD.
+	All the openSCAD source files must all be in same directory.
+	Open "FilmMain.scad" in openSCAD then compile as usual.
+	"FilmMain.scad" shows how to display one of each type of roller/capstan and in/exclude outer guide edges and sprockets.
     -------------------------------------------------------------------------------------------------
+
 Other notes:
-    - If sprockets are floating unattached out of position,  refer to USAGE notes above on selecting roller drawing type.
+    - If sprockets are floating unattached out of position, refer to USAGE notes above on selecting roller drawing type.
+    - Also zoom in a LOT to check sprockets are properly embedded in roller and do not have edge gaps, or conversely embedded to deep.
+        If they do, adjust sprocketEmbed parameter.
 	- film_roller.scad - does not have sloping inner edge on outer guide walls.
 
 TO DO:

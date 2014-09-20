@@ -2,6 +2,8 @@
 addSprockets = true;
 addOuterGuideEdges = true;
 
+//NOTE: order of first two includes is important!
+// last two must be after first two.
 include <16mm.scad>
 include <sprocket.scad>
 include <film_roller.scad>
