@@ -1,5 +1,8 @@
+// There are no checks to see if sizes make sense. eg you can make core roller smaller than the shaft hole etc.
+
 //Sprocket corner radius MUST be less than sprocket width/2, cannot be >=!
 // if not sprocket does not get drawn!
+
 
 /*TO DO
     - review filmSlop - make sure done so that film still fits capstan spokes AND guide wall
@@ -7,6 +10,10 @@
     - roller - film fit - trimmed to keep away from frame => capstan pos!!!!
     - roller radius/circumference/sprockets/film fit
     - sprocket - height, taper, edges.... fit into film perforations!!!!!
+
+    - work out how to do 8/16/35/.... sizes AND all the variations (eg 16/ultra etc & dif sprockets...)
+    ... simplest is just sep include for each
+       esp now only ONE include for this file!
 */
 
 //Select ONE of below to set the film size:
@@ -90,7 +97,7 @@ RunnerCyl_R = (numSprockets*SprocketPitch)/(2*PI);   //3.14159);		//circumfrance
 OuterCyl_H = 2;     // max outer wall thickness, excluding any tapering to stop film grabbing
 
 // Set position along shaft according to in.exclusion of outGuideWalls
-// addOuterGuideEdges is set true/false in FimMain.scad.... or your code.
+// addOuterGuideEdges is set true/false in FilmMain.scad.... or your code.
 spktShaft_H = addOuterGuideEdges ? (OuterCyl_H + RunnerCyl_H/2) : RunnerCyl_H/2;
 
 CoreCyl_H = filmWidth + filmSlop - 2*RunnerCyl_H ;
