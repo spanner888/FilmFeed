@@ -16,10 +16,6 @@
        esp now only ONE include for this file!
 */
 
-//Select ONE of below to set the film size:
-Standard_16 = true;
-Kodak_16 = true;
-BellHowell_16 = true;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -89,7 +85,7 @@ filmWidth = 16;		 // from 16mm standards
 frameWidth = 10.26;  // from 16mm standards
 filmSlop = 0.2;		 // a little bit of slop - so film does not grab/stick/rub on sides
 					 // reduce or REMOVE if add sloping outer walls
-frameGap = 0.5;      // film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
+frameGap = 0.3;      // film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
 
 RunnerCyl_H = (filmWidth - frameWidth - frameGap)/2;		// -frameGap => film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
 RunnerCyl_R = (numSprockets*SprocketPitch)/(2*PI);   //3.14159);		//circumfrance = 2*pi*radius
@@ -98,6 +94,7 @@ OuterCyl_H = 2;     // max outer wall thickness, excluding any tapering to stop 
 
 // Set position along shaft according to in.exclusion of outGuideWalls
 // addOuterGuideEdges is set true/false in FilmMain.scad.... or your code.
+// Assume sprockets in center of roller area - DO NOT adjust for frameGap!!
 spktShaft_H = addOuterGuideEdges ? (OuterCyl_H + RunnerCyl_H/2) : RunnerCyl_H/2;
 
 CoreCyl_H = filmWidth + filmSlop - 2*RunnerCyl_H ;

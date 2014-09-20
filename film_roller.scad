@@ -57,11 +57,14 @@ Getting input
 module film_rollerPartial(){
     //First join all the cylinders into the roller shape
     union(){
-        translate ([0,0,RunnerCyl_H]) cylinder(h = CoreCyl_H, r = CoreCyl_R);
+        // central core cylinder
+        //translate ([0,0,RunnerCyl_H - frameGap]) cylinder(h = CoreCyl_H, r = CoreCyl_R);
+        cylinder(h = CoreCyl_H + 2 * RunnerCyl_H, r = CoreCyl_R);
+
 
         // runners .. film runs on these two cylinders
-        translate ([0,0,RunnerCyl_H + CoreCyl_H]) cylinder(h = RunnerCyl_H, r = RunnerCyl_R);
-        cylinder(h = RunnerCyl_H, r = RunnerCyl_R);
+        translate ([0,0,RunnerCyl_H + CoreCyl_H + frameGap]) cylinder(h = RunnerCyl_H - frameGap, r = RunnerCyl_R);
+        cylinder(h = RunnerCyl_H - frameGap, r = RunnerCyl_R);
     }
 }
 
