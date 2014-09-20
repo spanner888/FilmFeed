@@ -4,17 +4,19 @@
 // make rollerOutlineAll call rollerOutlinePartial???
 // need think about shaft position....
 
-L0 = 0;                    // first outer edge
-L1 = L0 + OuterCyl_H;      // + outer wall thickness
-L2 = L1 + RunnerCyl_H;     // + runner thickness
-L3 = L2 + CoreCyl_H;       // + central shaft
-L4 = L3 + RunnerCyl_H;     // + runner thickness
-L5 = L4 + OuterCyl_H;      // + outer wall thickness
+// for module rollerOutlineAll
+L0 = 0;                                 // first outer edge
+L1 = L0 + OuterCyl_H;                   // + outer wall thickness
+L2 = L1 + RunnerCyl_H - frameGap;       // + runner thickness
+L3 = L2 + CoreCyl_H + 2 * frameGap;     // + central shaft
+L4 = L3 + RunnerCyl_H - frameGap;       // + runner thickness
+L5 = L4 + OuterCyl_H;                   // + outer wall thickness
 
-LP0 = 0;                    // first outer edge
-LP1 = LP0 + RunnerCyl_H;     // + runner thickness
-LP2 = LP1 + CoreCyl_H;       // + central shaft
-LP3 = LP2 + RunnerCyl_H;     // + runner thickness
+// for module rollerOutlinePartial
+LP0 = 0;                                // first outer edge
+LP1 = LP0 + RunnerCyl_H - frameGap;     // + runner thickness
+LP2 = LP1 + CoreCyl_H + 2 * frameGap;   // + central shaft
+LP3 = LP2 + RunnerCyl_H - frameGap;     // + runner thickness
 
 
 // complete with outer guide walls

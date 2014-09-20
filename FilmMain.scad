@@ -1,6 +1,6 @@
 //Select which parts to display
 addSprockets = true;
-addOuterGuideEdges = false;
+addOuterGuideEdges = true;
 
 // Pick ONE of these to match film-SMD size you require
 include <16mm_vars.scad>

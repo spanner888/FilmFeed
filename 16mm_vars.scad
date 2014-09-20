@@ -85,7 +85,7 @@ filmWidth = 16;		 // from 16mm standards
 frameWidth = 10.26;  // from 16mm standards
 filmSlop = 0.2;		 // a little bit of slop - so film does not grab/stick/rub on sides
 					 // reduce or REMOVE if add sloping outer walls
-frameGap = 0.3;      // film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
+frameGap = 0.6;      // film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
 
 RunnerCyl_H = (filmWidth - frameWidth - frameGap)/2;		// -frameGap => film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
 RunnerCyl_R = (numSprockets*SprocketPitch)/(2*PI);   //3.14159);		//circumfrance = 2*pi*radius
