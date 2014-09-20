@@ -16,12 +16,12 @@ Current status:
 USAGE:
 	To select your desired film size:
 		include your desired XXX_vars.scad file in "FilmMain.scad" or your own code.
-        AND  make sure that NO other include remain for other film sizes!
  		to match your desired film size (see "Current Status" for available sizes)
+        AND  make sure that NO other include remain for other film sizes!
 		For example for 16mm "standard" film:
 			include <16mm_vars.scad>	// all the variables for part sizes!
 		For example for 16mm "Kodak" film:
-			include <16mmK_vars.scad>	// all the variables for part sizes!
+			include <16mmKodak_vars.scad>	// all the variables for part sizes!
 
 	To add/remove outer guide walls or sprockets, in "2D_extruded_roller.scad" or "film_roller.scad":
         //Select which parts to display
@@ -53,5 +53,8 @@ TO DO:
     - plus more TO DO in code
 
 License:
+    MovieFeedControl by Spanner888 at {U}sable{D}evices is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+    Permissions beyond the scope of this license may be available via http://usabledevices.com/2011/11/contact-emails-and-legal-and-copyright-information/.
 
+    Blog of hardware build and other Telecine info can be found at http://usabledevices.com/category/telecine/
 
