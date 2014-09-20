@@ -2,7 +2,7 @@
 addSprockets = true;
 addOuterGuideEdges = false;
 
-include <16mm.scad>
+include <16mm_vars.scad>
 include <sprocket.scad>
 include <film_roller.scad>
 include <2D_extruded_roller.scad>
