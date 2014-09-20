@@ -10,9 +10,9 @@ include <2D_extruded_roller.scad>
 // Add one 2D_extrude_roller at offset to the "right"
 if (addSprockets) {
     color("orange")
-    translate([0,55,0])
+    translate([0,30,0])
     TwoDExtrudeRoller(addOuterGuideEdges);
-    translate([0,55,0])
+    translate([0,30,0])
     color("green")
     if (addOuterGuideEdges) {
         sprocketRing(OuterCyl_H + RunnerCyl_H/2, spkt_H, spkt_W, spktCorner_R, spkt_L);

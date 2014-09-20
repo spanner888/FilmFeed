@@ -82,8 +82,9 @@ TwoDextrude1  = false;       //flag to select correct sprocket height for 2D_ext
 
 numSprockets = 8;
 SprocketPitch = 7.605;
-sprocketEmbed = 0.;	// because a flat cone base on a cylinder surface would leave a gap,
-					// need to 'embed' sprocket cone into surface to ensure fully mates - no gaps!
+sprocketEmbed = 0.08;	// because a flat cone base on a cylinder surface would leave a gap,
+                        // need to 'embed' sprocket cone into surface to ensure fully mates - no gaps!
+                        // ** ADJUST FOR DIF NUMBER OF SPROCKETS .. ie dif roller radius!
 
 //spkt_W = Standard_16? 11.829 : 0;
 //else if (filmSize == "Kodak"){

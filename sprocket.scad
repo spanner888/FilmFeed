@@ -65,7 +65,7 @@ module sprocketRing(shaft_H, s_height, s_W, sCorner_R, s_L){
 	   rotate( [90, 0, i * 360 / numSprockets])
 	   translate([0,
                     shaft_H,
-                    RunnerCyl_R + spkt_H/2  // set sprockets at this radius. + spkt_H/2 as drawn with "center = true".
+                    RunnerCyl_R + spkt_H/2 - sprocketEmbed // set sprockets at this radius. + spkt_H/2 as drawn with "center = true".
                     ])
         sprocket(s_height, s_W, sCorner_R, s_L);
     }
