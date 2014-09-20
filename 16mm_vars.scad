@@ -3,7 +3,6 @@
 //Sprocket corner radius MUST be less than sprocket width/2, cannot be >=!
 // if not sprocket does not get drawn!
 
-
 /*TO DO
     - review filmSlop - make sure done so that film still fits capstan spokes AND guide wall
     - capstan pos on rollers ... assumed in middle BUT see next
@@ -14,8 +13,10 @@
     - work out how to do 8/16/35/.... sizes AND all the variations (eg 16/ultra etc & dif sprockets...)
     ... simplest is just sep include for each
        esp now only ONE include for this file!
-*/
 
+       THIS IS **NOT** IDEAL WAY TO DO THIS
+       as changes to calculations need to be updated in each file....
+*/
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -61,16 +62,9 @@ sprocketEmbed = 0.08;	// because a flat cone base on a cylinder surface would le
                         // need to 'embed' sprocket cone into surface to ensure fully mates - no gaps!
                         // ** ADJUST FOR DIF NUMBER OF SPROCKETS .. ie dif roller radius!
 
-//spkt_W = Standard_16? 11.829 : 0;
-//else if (filmSize == "Kodak"){
-//else if (filmSize == "Bell & Howell"){
-// force warnings .. filmSize not set or incorrect value
-
 spkt_W = 1.829;
 spkt_L = 1.27;
 spktCorner_R = 0.25;
-/*
-*/
 
 /* Kodak sprocket-perforations
 	  spkt_W = 1.981;
@@ -85,12 +79,15 @@ filmWidth = 16;		 // from 16mm standards
 frameWidth = 10.26;  // from 16mm standards
 filmSlop = 0.2;		 // a little bit of slop - so film does not grab/stick/rub on sides
 					 // reduce or REMOVE if add sloping outer walls
-frameGap = 0.6;      // film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
+frameGap = 0.3;      // film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
 
+// RunnerCyl_H is left at it's full nominal height
+// frameGap is NOT subtracted here, relevant drawing methods adjust for filmGap as required.
+// This way sprockets are easier to put in the nominal middle of the film roller area!
 RunnerCyl_H = (filmWidth - frameWidth - frameGap)/2;		// -frameGap => film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
-RunnerCyl_R = (numSprockets*SprocketPitch)/(2*PI);   //3.14159);		//circumfrance = 2*pi*radius
+RunnerCyl_R = (numSprockets*SprocketPitch)/(2*PI);          //circumference = 2*pi*radius
 
-OuterCyl_H = 2;     // max outer wall thickness, excluding any tapering to stop film grabbing
+OuterCyl_H = 2;     // max outer wall thickness, excluding any inner tapering to stop film grabbing on walls
 
 // Set position along shaft according to in.exclusion of outGuideWalls
 // addOuterGuideEdges is set true/false in FilmMain.scad.... or your code.
@@ -102,7 +99,6 @@ CoreCyl_R = 4;
 
 OuterCyl_R = RunnerCyl_R + 3;
 outerWallSlopeGap = 0.5;        // only used by 2D_extruded_roller code, not by film_roller.scad
-
 
 shaft_R = 6.5/2;        // motor/stepper shaft radius
 
