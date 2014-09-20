@@ -1,9 +1,7 @@
 //Select which parts to display
 addSprockets = true;
-addOuterGuideEdges = true;
+addOuterGuideEdges = false;
 
-//NOTE: order of first two includes is important!
-// last two must be after first two.
 include <16mm.scad>
 include <sprocket.scad>
 include <film_roller.scad>
@@ -42,3 +40,4 @@ color("silver")
 film_roller(addOuterGuideEdges);
 
 
+*import("ruler.stl");    // a ruler so can measure sizes of things ... this one looks imperial!

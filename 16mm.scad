@@ -79,20 +79,19 @@ spkt_H = 2.2 + sprocketEmbed;		// <<< embedding will reduce actual base size!!!!
 								// hopefully this will give just enough slop for good fit :)
 
 filmWidth = 16;		 // from 16mm standards
-frameWidth = 10.26;   // from 16mm standards
+frameWidth = 10.26;  // from 16mm standards
 filmSlop = 0.2;		 // a little bit of slop - so film does not grab/stick/rub on sides
 					 // reduce or REMOVE if add sloping outer walls
+frameGap = 0.5;      // film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
 
-RunnerCyl_H = (filmWidth - frameWidth - 0.6)/2;		// -0.6 => film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
-//RunnerCyl_R = 6;
+RunnerCyl_H = (filmWidth - frameWidth - frameGap)/2;		// -frameGap => film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
 RunnerCyl_R = (numSprockets*SprocketPitch)/(2*PI);   //3.14159);		//circumfrance = 2*pi*radius
 
-OuterCyl_H = 2;
+OuterCyl_H = 2;     // max outer wall thickness, excluding any tapering to stop film grabbing
 
-spktShaft_H_fr = (-0.5*RunnerCyl_H);
-spktShaft_H_2D = (OuterCyl_H + 0.5*RunnerCyl_H);
-spktShaft_H = (OuterCyl_H + 0.5*RunnerCyl_H);
-//spktShaft_H = 0;    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< all this not yet worked out. just settign to 0 so is obvious ATM!
+// Set position along shaft according to in.exclusion of outGuideWalls
+// addOuterGuideEdges is set true/false in FimMain.scad.... or your code.
+spktShaft_H = addOuterGuideEdges ? (OuterCyl_H + RunnerCyl_H/2) : RunnerCyl_H/2;
 
 CoreCyl_H = filmWidth + filmSlop - 2*RunnerCyl_H ;
 CoreCyl_R = 4;
@@ -104,13 +103,3 @@ outerWallSlopeGap = 0.5;        // only used by 2D_extruded_roller code, not by 
 shaft_R = 6.5/2;        // motor/stepper shaft radius
 
 fragResolution = 500;   // resolution of individual parts in the 3D model
-
-//just for testing if this file compiles standalone!, .. and it does compile OK!
-// add/remove '*' before minkowski() below to skip/run this bit of test code
-    *minkowski()
-    {
-       square([10, 20], center = true, $fn = fragResolution);
-       circle(r=3, center = true, $fn = fragResolution);
-    }
-
-*import("ruler.stl");    // a ruler so can measure sizes of things ... this one looks imperial!
