@@ -52,9 +52,14 @@ TO DO:
     - create the physical objects and test
     - plus more TO DO in code
 
+Credits:
+  - http://openSCAD.org
+
 License:
-    MovieFeedControl by Spanner888 at {U}sable{D}evices is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+    Film-SMD-Roller-Capstan by Spanner888 at {U}sable{D}evices is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
     Permissions beyond the scope of this license may be available via http://usabledevices.com/2011/11/contact-emails-and-legal-and-copyright-information/.
 
     Blog of hardware build and other Telecine info can be found at http://usabledevices.com/category/telecine/
-
+    gitHub:	 http://github/spanner888
+    thingiverse: http://www.thingiverse.com/thing:####	http://www.thingiverse.com/user:spanner888
+??customizer url/info????

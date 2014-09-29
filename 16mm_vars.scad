@@ -5,18 +5,17 @@
 
 /*TO DO
     - review filmSlop - make sure done so that film still fits capstan spokes AND guide wall
-    - capstan pos on rollers ... assumed in middle BUT see next
-    - roller - film fit - trimmed to keep away from frame => capstan pos!!!!
+    - capstan position on rollers ... assumed in middle BUT see next
     - roller radius/circumference/sprockets/film fit
     - sprocket - height, taper, edges.... fit into film perforations!!!!!
+>>>** sprocket-pitch	7.605 OR 7.620
+    - PRINT AND TEST!!!
 
     - work out how to do 8/16/35/.... sizes AND all the variations (eg 16/ultra etc & dif sprockets...)
     ... simplest is just sep include for each
        esp now only ONE include for this file!
-
        THIS IS **NOT** IDEAL WAY TO DO THIS
-       as changes to calculations need to be updated in each file....
-
+       as changes common vars/calculations need to be updated in each file....
 
        possibly simplify by
         - adding sep include files for dif sprockets
@@ -26,6 +25,11 @@
         .... so ONLY vars that change with film size in THESE includes
         .... or if have to calc for a specific film size
 
+    Until these are done, designs below might help you:
+        Super 8 Transport roll - Fits on a 4mm axis 	http://www.thingiverse.com/thing:180151
+        35mm film gear - intermittent sprocket	http://www.thingiverse.com/thing:6324
+        35mm film spool (variable sprockets)	http://www.thingiverse.com/thing:28236
+    .. or you could find relevant film specs and adjust variables here.
 */
 
 

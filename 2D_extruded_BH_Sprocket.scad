@@ -2,8 +2,11 @@
 
 //include <16mm_vars.scad>
 
-//spkt_W = 1.854;
-//spkt_L = 2.794;		// note this is DIAMETER of cyl/cone!!
+//** NOTE: sizes are from standards for the PERFORATION holes.
+// it is likely sprocket pins are smaller - esp tapered top
+// eg ACTUAL pins on B&H projector seem VERY SKINNY!!!
+
+
 spktRadius = 2.794 /2;
 //	  spktCorner_R = 0;		// there is no corner, but is cylinder above!
 
