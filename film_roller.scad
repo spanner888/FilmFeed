@@ -13,9 +13,10 @@ Version 0.6 2014-09-30
 
 // changes here are NOT ALWAYS automatically compiled/reloaded. Need to press F5 in main app!
 
-//*** ASSUMPTION: SPROCKETS ARE IN CENTER OF RUNNER!!!!!!!!
 
 //?? XCJ/dif 3D printer resolution => on design/capability!!!!!
+
+//*** ASSUMPTION: SPROCKETS ARE IN CENTER OF RUNNER!!!!!!!!
 
 
 /* mounting shaft hole

@@ -157,3 +157,5 @@ outerWallSlopeGap = 0.5;
 
 // resolution of individual parts in the 3D model
 fragResolution = 500;
+
+//CUSTOMIZER VARIABLES END
