@@ -54,6 +54,9 @@ TO DO:
 
 Credits:
   - http://openSCAD.org
+  - http://en.wikipedia.org/wiki/16_mm_film
+  - http://www.paulivester.com/films/filmstock/guide.htm
+  - http://motion.kodak.com/motion/uploadedFiles/US_plugins_acrobat_en_motion_newsletters_filmEss_11_Film_Specs.pdf
 
 License:
     Film-SMD-Roller-Capstan by Spanner888 at {U}sable{D}evices is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
@@ -61,5 +64,4 @@ License:
 
     Blog of hardware build and other Telecine info can be found at http://usabledevices.com/category/telecine/
     gitHub:	 http://github/spanner888
-    thingiverse: http://www.thingiverse.com/thing:####	http://www.thingiverse.com/user:spanner888
-??customizer url/info????
+    thingiverse: http://www.thingiverse.com/user:spanner888

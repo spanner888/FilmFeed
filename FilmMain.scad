@@ -1,3 +1,19 @@
+/* What is this thing?
+    Guide roller for common film formats and also for SMD component tape feed.
+    Optional outer guide walls and sprocket teeth.
+    Adjustable features: guide wall slopes, number of sprockets, sprocket slopes & height....
+
+License:
+    Film-SMD-Roller-Capstan by Spanner888 at {U}sable{D}evices is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+    Permissions beyond the scope of this license may be available via http://usabledevices.com/2011/11/contact-emails-and-legal-and-copyright-information/.
+
+    Blog of hardware build and other Telecine info can be found at http://usabledevices.com/category/telecine/
+    gitHub:	 http://github/spanner888
+    thingiverse: http://www.thingiverse.com/user:spanner888
+
+See README.txt for info on how to adjust etc
+*/
+
 //Select which parts to display
 addSprockets = true;
 addOuterGuideEdges = true;
@@ -15,9 +31,9 @@ include <2D_extruded_roller.scad>
 // Add one 2D_extrude_roller at offset to the "right"
 if (addSprockets) {
     color("orange")
-    translate([0,20,0])
+    translate([0,28,0])
     TwoDExtrudeRoller(addOuterGuideEdges);
-    translate([0,20,0])
+    translate([0,28,0])
     color("green")
     if (addOuterGuideEdges) {
         sprocketRing(OuterCyl_H + RunnerCyl_H/2, spkt_H, spkt_W, spktCorner_R, spkt_L);
@@ -32,7 +48,7 @@ else {
     TwoDExtrudeRoller(addOuterGuideEdges);
 }
 
-// Add ONE film_roller
+// Add ONE film_roller - created from cylinders
 if (addSprockets) {
     if (addOuterGuideEdges) {
         sprocketRing(OuterCyl_H + RunnerCyl_H/2, spkt_H, spkt_W, spktCorner_R, spkt_L);
@@ -44,5 +60,3 @@ if (addSprockets) {
 color("silver")
 film_roller(addOuterGuideEdges);
 
-
-*import("ruler.stl");    // a ruler so can measure sizes of things ... this one looks imperial!

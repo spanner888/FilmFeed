@@ -1,3 +1,19 @@
+/* What is this thing?
+    Guide roller for common film formats and also for SMD component tape feed.
+    Optional outer guide walls and sprocket teeth.
+    Adjustable features: guide wall slopes, number of sprockets, sprocket slopes & height....
+
+License:
+    Film-SMD-Roller-Capstan by Spanner888 at {U}sable{D}evices is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+    Permissions beyond the scope of this license may be available via http://usabledevices.com/2011/11/contact-emails-and-legal-and-copyright-information/.
+
+    Blog of hardware build and other Telecine info can be found at http://usabledevices.com/category/telecine/
+    gitHub:	 http://github/spanner888
+    thingiverse: http://www.thingiverse.com/user:spanner888
+
+See README.txt for info on how to adjust etc
+*/
+
 // There are no checks to see if sizes make sense. eg you can make core roller smaller than the shaft hole etc.
 
 //Sprocket corner radius MUST be less than sprocket width/2, cannot be >=!
@@ -98,6 +114,7 @@ frameWidth = 10.26;  // from 16mm standards
 
 // bit of slop - so film does not grab/stick/rub on sides of roller walls
 filmSlop = 0.2;		 // reduce or REMOVE if add sloping outer walls
+
 // film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
 frameGap = 0.3;
 
