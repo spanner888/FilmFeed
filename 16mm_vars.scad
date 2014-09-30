@@ -12,6 +12,8 @@ License:
     thingiverse: http://www.thingiverse.com/user:spanner888
 
 See README.txt for info on how to adjust etc
+
+Version 0.6 2014-09-30
 */
 
 // There are no checks to see if sizes make sense. eg you can make core roller smaller than the shaft hole etc.

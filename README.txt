@@ -12,6 +12,7 @@ Current status:
     Can already simply adjust features. Structure in place to easily switch to other formats.
     Just need data entry & testing for the other formats.
 
+Version 0.6 2014-09-30
     -------------------------------------------------------------------------------------------------
 USAGE:
 	To select your desired film size:

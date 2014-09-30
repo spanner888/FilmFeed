@@ -12,6 +12,8 @@ License:
     thingiverse: http://www.thingiverse.com/user:spanner888
 
 See README.txt for info on how to adjust etc
+
+Version 0.6 2014-09-30
 */
 
 // changes here are NOT ALWAYS automatically compiled/reloaded. Need to press F5 in main app!
