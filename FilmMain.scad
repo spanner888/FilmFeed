@@ -1,8 +1,14 @@
 //CUSTOMIZER VARIABLES
 
-//Select which parts to display
-addSprockets = true;
-addOuterGuideEdges = true;
+//Add sprockets
+addSprockets = "yes"; // [yes,no]
+
+//Add outer guide edges
+addOuterGuideEdges = "yes"; // [yes,no]
+
+
+//addSprockets = true;
+//addOuterGuideEdges = true;
 
 // Number of sprockets
 numSprockets = 8;
@@ -50,10 +56,6 @@ RunnerCyl_R = (numSprockets*SprocketPitch)/(2*PI);          //circumference = 2*
 // max outer wall thickness, excluding any inner tapering to stop film grabbing on walls
 OuterCyl_H = 2;
 
-// Set position along shaft according to in.exclusion of outGuideWalls
-// addOuterGuideEdges is set true/false in FilmMain.scad.... or your code.
-// Assume sprockets in center of roller area - DO NOT adjust for frameGap!!
-spktShaft_H = addOuterGuideEdges ? (OuterCyl_H + RunnerCyl_H/2) : RunnerCyl_H/2;
 
 CoreCyl_H = filmWidth + filmSlop - 2*RunnerCyl_H ;
 
@@ -142,13 +144,13 @@ Version 0.71 2014-09-30
 
 
 // Add one 2D_extrude_roller at offset to the "right"
-if (addSprockets) {
-    color("orange")
+ if (addSprockets == "yes") {
+         color("orange")
     translate([0,28,0])
     TwoDExtrudeRoller(addOuterGuideEdges);
     translate([0,28,0])
     color("green")
-    if (addOuterGuideEdges) {
+    if (addOuterGuideEdges  == "yes") {
         sprocketRing(OuterCyl_H + RunnerCyl_H/2, spkt_H, spkt_W, spktCorner_R, spkt_L);
     }
     else{
@@ -162,8 +164,8 @@ else {
 }
 
 // Add ONE film_roller - created from cylinders
-if (addSprockets) {
-    if (addOuterGuideEdges) {
+ if (addSprockets == "yes") {
+    if (addOuterGuideEdges  == "yes") {
         sprocketRing(OuterCyl_H + RunnerCyl_H/2, spkt_H, spkt_W, spktCorner_R, spkt_L);
     }
     else{
@@ -323,8 +325,8 @@ module film_rollerAll(){
     }
 }
 
-module film_roller(addOGEdges = true){
-    if (addOGEdges){
+module film_roller(addOGEdges = "yes"){
+    if (addOGEdges == "yes"){
         difference() {
             film_rollerAll();
             // now difference (subtract) the mounting shaft hole
@@ -392,8 +394,8 @@ module rollerOutlinePartial (){
 }
 
 //Draw with/out the outer guide edges, according to parameter passed in.
-module TwoDExtrudeRoller(addOuterGuideEdges = true){
-    if (addOuterGuideEdges){
+module TwoDExtrudeRoller(addOuterGuideEdges = "yes"){
+    if (addOuterGuideEdges == "yes" ){
         //rotated 90 degrees to show how the rotation will look, the rotate_extrude() needs it flat).
         //rotate([90,0,0])
         rotate_extrude($fn=200) rollerOutlineAll();
