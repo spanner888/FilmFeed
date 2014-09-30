@@ -15,15 +15,6 @@ Current status:
 Version 0.6 2014-09-30
     -------------------------------------------------------------------------------------------------
 USAGE:
-	To select your desired film size:
-		include your desired XXX_vars.scad file in "FilmMain.scad" or your own code.
- 		to match your desired film size (see "Current Status" for available sizes)
-        AND  make sure that NO other include remain for other film sizes!
-		For example for 16mm "standard" film:
-			include <16mm_vars.scad>	// all the variables for part sizes!
-		For example for 16mm "Kodak" film:
-			include <16mmKodak_vars.scad>	// all the variables for part sizes!
-
 	To add/remove outer guide walls or sprockets, in "2D_extruded_roller.scad" or "film_roller.scad":
         //Select which parts to display
         addSprockets = true;
@@ -148,11 +139,6 @@ fragResolution = 500;
 
 //CUSTOMIZER VARIABLES END
 
-
-// these files draw the dif parts
-include <sprocket.scad>
-include <film_roller.scad>
-include <2D_extruded_roller.scad>
 
 // Add one 2D_extrude_roller at offset to the "right"
 if (addSprockets) {
