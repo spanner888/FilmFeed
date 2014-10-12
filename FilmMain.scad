@@ -1,3 +1,5 @@
+// TODO - make EMBEDDED BASE of sprockets non-sloped, so area is smaller & less likely to "poke out" into "free air" over edge of roller surface
+
 //CUSTOMIZER VARIABLES
 
 //Add sprockets
@@ -5,10 +7,6 @@ addSprockets = "yes"; // [yes,no]
 
 //Add outer guide edges
 addOuterGuideEdges = "yes"; // [yes,no]
-
-
-//addSprockets = true;
-//addOuterGuideEdges = true;
 
 // Number of sprockets
 numSprockets = 8;
@@ -29,7 +27,6 @@ spkt_L = 1.27;
 //Corner radius
 spktCorner_R = 0.25;
 
-
 spkt_H = 2.2 + sprocketEmbed;		// <<< embedding will reduce actual base size!!!!!
 								// hopefully this will give just enough slop for good fit :)
 
@@ -44,7 +41,7 @@ filmSlop = 0.2;		 // a little bit of slop - so film does not grab/stick/rub on s
 					 // reduce or REMOVE if add sloping outer walls
 
 // film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
-frameGap = 0.3;
+frameGap = 0.1;
 
 // RunnerCyl_H is left at it's full nominal height
 // frameGap is NOT subtracted here, relevant drawing methods adjust for filmGap as required.
@@ -52,10 +49,8 @@ frameGap = 0.3;
 RunnerCyl_H = (filmWidth - frameWidth - frameGap)/2;		// -frameGap => film **frame** area NOT touching roller ... so less change of damaging actual picture area in the frame!!!
 RunnerCyl_R = (numSprockets*SprocketPitch)/(2*PI);          //circumference = 2*pi*radius
 
-
 // max outer wall thickness, excluding any inner tapering to stop film grabbing on walls
 OuterCyl_H = 2;
-
 
 CoreCyl_H = filmWidth + filmSlop - 2*RunnerCyl_H ;
 
@@ -69,7 +64,6 @@ OuterCyl_R = RunnerCyl_R + 3;
 
 // Slope inner roller wall, avoid film edges grabbing. Only used by 2D_extruded_roller code, not by film_roller.scad
 outerWallSlopeGap = 0.5;
-
 
 // resolution of individual parts in the 3D model
 fragResolution = 500;
@@ -218,7 +212,7 @@ film_roller(addOuterGuideEdges);
 $fn = fragResolution;
 
 // Module to draw ONE sprocket
-module sprocket(s_height, s_W, sCorner_R, s_L){
+module sprocket(s_height, s_L, sCorner_R, s_W){
 	//need to do 2D shape - THEN extrude!!!!!
 	rotate(a=[0,180,0]){			// rotate to get sprocket facing outwards!
 		linear_extrude(height = s_height, center = true, convexity = 10, scale=1.5)
