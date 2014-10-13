@@ -86,7 +86,7 @@ Current status:
     Can already simply adjust features. Structure in place to easily switch to other formats.
     Just need data entry & testing for the other formats.
 
-Version 0.6 2014-09-30
+Version 0.61 2014-10-13
     -------------------------------------------------------------------------------------------------
 USAGE:
 	To add/remove outer guide walls or sprockets, in "2D_extruded_roller.scad" or "film_roller.scad":
